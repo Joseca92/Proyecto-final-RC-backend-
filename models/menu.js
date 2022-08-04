@@ -31,5 +31,6 @@ UsuarioSchema.methods.toJSON = function() {
     return resto;
 }
 
+
 module.exports= model("Menu", MenuSchema);
 
