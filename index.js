@@ -1,9 +1,5 @@
-//backend 
-const express = require('express')
-const app = express()
+const Server = require("./models/server")
+require("dotenv").config();
 
-app.get('/', function (req, res) {
-  res.send('Hello World')
-})
-
-app.listen(3000)
+const server = new Server();
+server.listen();
