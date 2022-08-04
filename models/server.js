@@ -3,7 +3,6 @@ const { dbConnection } = require("../database/config");
 
 class Server{
     constructor() {
-        
         this.app = express();
         this.port = process.env.port
         this.conectarDB();
@@ -12,8 +11,7 @@ class Server{
     async conectarDB() {
         await dbConnection();
       }
-
-    listen(){
+        listen(){
         this.app.listen(this.port, ()=>{
             console.log("Server Online", this.port)
         });
