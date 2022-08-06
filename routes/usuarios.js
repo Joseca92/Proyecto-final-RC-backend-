@@ -1,3 +1,4 @@
+//rutas de usuario
 const {Router}= require("express");
 const {check} =require('express-validator');
 const { Error } = require("mongoose");
