@@ -8,12 +8,14 @@ class Server{
         this.port = process.env.PORT;
         this.usuariosPath='/api/usuarios';
         this.authPath= '/api/auth';
+        this.menuPath= '/api/menu';
         //conexion DB
         this.conectarDB();
         //middlewares
         this.middlewares();
         //routes
         this.routes();
+
     }
 
     async conectarDB() {
@@ -42,6 +44,9 @@ class Server{
         this.app.listen(this.port, ()=>{
             console.log("Server online port: ", this.port);
         });
+    }
+    routes(){
+        this.app.use(this.menuPath, require('../routes/menu'))
     }
 
 }
