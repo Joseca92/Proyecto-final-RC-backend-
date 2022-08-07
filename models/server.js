@@ -6,6 +6,7 @@ class Server{
     constructor() {
         this.app = express();
 <<<<<<< HEAD
+<<<<<<< HEAD
         this.port = process.env.port
         this.menuPath= '/menu'
         this.conectarDB();
@@ -20,13 +21,23 @@ class Server{
         this.usuariosPath='/api/usuarios';
         this.authPath= '/api/auth';
         this.menuPath= '/api/menu'
+=======
+        this.port = process.env.PORT;
+        this.usuariosPath='/api/usuarios';
+        this.authPath= '/api/auth';
+        this.menuPath= '/api/menu';
+>>>>>>> c04db59a8d338a34b801169af56c4a2bca5b54da
         //conexion DB
         this.conectarDB();
         //middlewares
         this.middlewares();
         //routes
         this.routes();
+<<<<<<< HEAD
 >>>>>>> b1929c131588c244c5655407278b831bdfca1fc2
+=======
+
+>>>>>>> c04db59a8d338a34b801169af56c4a2bca5b54da
     }
 
     async conectarDB() {
