@@ -18,13 +18,13 @@ const MenuSchema= Schema({
         required:[true,"El detalle es obligatorio"], 
     },
     categoria:{
-        type: Schema.Types.ObjectId,
-        ref: "categoria",
+        type: String,
+        // ref: "categoria",
         required:[true,"La categoria es obligatoria"], 
     },
 });
-//quitar datos de la respuesta json
-// UsuarioSchema.methods.toJSON = function() {
+// quitar datos de la respuesta json
+// MenuSchema.methods.toJSON = function() {
 //     const {__v, password, _id, ...resto}=this.toObject();
 //     resto.uid= _id;
 

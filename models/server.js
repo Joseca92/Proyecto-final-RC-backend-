@@ -1,5 +1,5 @@
 const express = require("express");
-const cors = require("cors");
+// const cors = require("cors");
 const {dbConnection} = require('../database/config');
 
 class Server{
@@ -15,7 +15,6 @@ class Server{
         this.middlewares();
         //routes
         this.routes();
-
     }
 
     async conectarDB() {
@@ -27,7 +26,7 @@ class Server{
         this.app.use(express.json());
 
         //CORS
-        this.app.use(cors());
+        // this.app.use(cors());
 
         //carpeta publica
         this.app.use(express.static("public")); 
@@ -35,6 +34,7 @@ class Server{
     routes(){
         this.app.use(this.usuariosPath, require("../routes/usuarios"));
         this.app.use(this.authPath, require("../routes/auth"));
+        this.app.use(this.menuPath, require("../routes/menu"));
 
     }
 
