@@ -8,10 +8,12 @@ const menuGet = async (req = request, res)=>{
     })
 }
 const menuPost = async (req = request, res)=>{
-    const body = req.body
-    res.json({
-        msg: 'Peticion POST',
-        usuario : body,
+    const body = req.body;
+    const menu = new MenuSchema(body);
+    await menu.save();
+    res.status(201).json({
+        // msg: 'Peticion POST',
+        menu,
     })
 
 }
