@@ -1,5 +1,5 @@
 const express = require("express");
-// const cors = require("cors");
+const cors = require("cors");
 const {dbConnection} = require('../database/config');
 
 class Server{
@@ -25,8 +25,8 @@ class Server{
         //Lectura de body
         this.app.use(express.json());
 
-        //CORS
-        // this.app.use(cors());
+        // CORS
+        this.app.use(cors());
 
         //carpeta publica
         this.app.use(express.static("public")); 
