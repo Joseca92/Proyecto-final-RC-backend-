@@ -18,8 +18,8 @@ const MenuSchema= Schema({
         required:[true,"El detalle es obligatorio"], 
     },
     categoria:{
-        type: String,
-        // ref: "categoria",
+        type: Schema.Types.ObjectId,
+        ref: "categoria",
         required:[true,"La categoria es obligatoria"], 
     },
 });

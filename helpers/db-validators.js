@@ -1,6 +1,7 @@
 const Role =require("../models/role");
 const Usuario= require("../models/usuario");
-
+const Categoria = require("../models/categoria");
+const Menu = require("../models/menu")
 const esRoleValido= async(role="")=>{
     const existeRole= await Role.findOne({role});
     if(!existeRole){
@@ -22,10 +23,25 @@ const existeUsuarioPorId= async(id)=>{
         throw new Error(`El ID ${id} no existe en la BD`);
     }
 }
+//Validar categoria Menu
+const existeCategoriaMenu = async (categoria = "") => {
+    const existeCtegoria = await Categoria.findOne({categoria});
+    if (!existeCtegoria) {
+      throw new Error(`La categoria ${categoria} no existe en la DB`);
+    }
+  }
+const existeMenuPorId= async(id)=>{
+    const existeMenu= await Menu.findOne({_id:id});
+    if(!existeMenu){
+        throw new Error(`El ID ${id} no existe en la BD`);
+    }
+}
 
 module.exports={
     esRoleValido,
     emailExiste,
     existeUsuarioPorId,
+    existeCategoriaMenu,
+    existeMenuPorId,
  
 }
