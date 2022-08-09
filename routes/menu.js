@@ -7,7 +7,10 @@ const {
 } = require("../controllers/menu");
 const { check } = require("express-validator");
 const { validarCampos } = require("../middlewares/validar-campos");
-const { existeCategoriaMenu, existeMenuPorId } = require("../helpers/db-validators");
+const {
+  existeCategoriaMenu,
+  existeMenuPorId,
+} = require("../helpers/db-validators");
 
 const router = Router();
 router.get("/", menuGet);
@@ -25,14 +28,22 @@ router.post(
   ],
   menuPost
 );
-router.put("/:id", [
-    check("id","El ID no es válido").isMongoId(),
+router.put(
+  "/:id",
+  [
+    check("id", "El ID no es válido").isMongoId(),
     check("id").custom(existeMenuPorId),
-    validarCampos
-],menuPut);
-router.delete("/:id",[
-    check("id","El ID no es válido").isMongoId(),
+    validarCampos,
+  ],
+  menuPut
+);
+router.delete(
+  "/:id",
+  [
+    check("id", "El ID no es válido").isMongoId(),
     check("id").custom(existeMenuPorId),
-    validarCampos
-], menuDelete);
+    validarCampos,
+  ],
+  menuDelete
+);
 module.exports = router;
