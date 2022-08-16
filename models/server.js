@@ -9,6 +9,8 @@ class Server{
         this.usuariosPath='/api/usuarios';
         this.authPath= '/api/auth';
         this.menuPath= '/api/menu';
+        this.pedidoPath= '/api/pedido';
+
         //conexion DB
         this.conectarDB();
         //middlewares
@@ -35,6 +37,8 @@ class Server{
         this.app.use(this.usuariosPath, require("../routes/usuarios"));
         this.app.use(this.authPath, require("../routes/auth"));
         this.app.use(this.menuPath, require("../routes/menu"));
+        this.app.use(this.pedidoPath, require("../routes/pedido"));
+
 
     }
 
@@ -45,9 +49,6 @@ class Server{
             console.log("Server online port: ", this.port);
         });
     }
-    routes(){
-        this.app.use(this.menuPath, require('../routes/menu'))
-    }
-
+   
 }
 module.exports = Server;

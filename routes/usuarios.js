@@ -5,7 +5,7 @@ const { Error } = require("mongoose");
 const { esRoleValido, emailExiste, existeUsuarioPorId } = require("../helpers/db-validators");
 const { validarCampos } = require("../middlewares/validar-campos");
 const { validarJWT } = require("../middlewares/validar-jwt");
-const {esAdminRole}= require('../middlewares/validar-role')
+const {esAdminRole}= require('../middlewares/validar-role');
 
 const {
     usuariosGet , 
@@ -28,6 +28,7 @@ router.post('/', [
     check("role").custom(esRoleValido),
     validarCampos
     ],usuariosPost);
+    
 router.put('/:id',[
     validarJWT,
     check("id", "No es un ID valido").isMongoId(),
