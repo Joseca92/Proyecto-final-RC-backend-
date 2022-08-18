@@ -1,16 +1,30 @@
 const { Router } = require("express");
+const { validarJWT } = require("../middlewares/validar-jwt");
 const {
   menuGet,
+  menuByIdGet,
   menuPost,
   menuPut,
   menuDelete,
 } = require("../controllers/menu");
 const { check } = require("express-validator");
 const { validarCampos } = require("../middlewares/validar-campos");
-const { existeCategoriaMenu, existeMenuPorId } = require("../helpers/db-validators");
+const {
+  existeCategoriaMenu,
+  existeMenuPorId,
+  menuExiste,
+} = require("../helpers/db-validators");
 
 const router = Router();
-router.get("/", menuGet);
+router.get("/",[validarJWT], menuGet);
+
+router.get("/:id",[
+  validarJWT,
+  check("id","No es un id de Mongo valido").isMongoId(),
+  check("nombre").custom(menuExiste),
+  validarCampos, 
+], menuByIdGet);
+
 router.post(
   "/",
   [
@@ -19,20 +33,34 @@ router.post(
       min: 5,
     }),
     check("precio", "El valor debe ser numerico").isNumeric(),
+    check("precio", "El valor es obligatorio").notEmpty(),
     check("detalle", "El detalle es obligatorio").notEmpty(),
+    check("nombre").custom(menuExiste),
     check("categoria").custom(existeCategoriaMenu),
+    
     validarCampos,
   ],
   menuPost
 );
-router.put("/:id", [
-    check("id","El ID no es válido").isMongoId(),
+router.put(
+  "/:id",
+  [
+    validarJWT,
+    check("id", "El ID no es válido").isMongoId(),
     check("id").custom(existeMenuPorId),
-    validarCampos
-],menuPut);
-router.delete("/:id",[
-    check("id","El ID no es válido").isMongoId(),
+    check("categoria").custom(existeCategoriaMenu),
+    validarCampos,
+  ],
+  menuPut
+);
+router.delete(
+  "/:id",
+  [
+    validarJWT,
+    check("id", "El ID no es válido").isMongoId(),
     check("id").custom(existeMenuPorId),
-    validarCampos
-], menuDelete);
+    validarCampos,
+  ],
+  menuDelete
+);
 module.exports = router;
