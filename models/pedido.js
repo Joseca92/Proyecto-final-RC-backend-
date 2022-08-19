@@ -6,14 +6,13 @@ const PedidoSchema= Schema({
         ref: "usuario",
         required:[true,"El usuario es obligatorio"], 
     },
-    date: {
+    date:{
         type: Date,
         default: Date.now,
-      },
+    },
     menu:{
-        type: Schema.Types.ObjectId,
-        ref: "menu",
-        required:[true,"El menú es obligatorio"], 
+        type:[String],
+        required:[true,"El menu es obligatorio"],
     },
     estado:{
         type: Boolean,
@@ -23,6 +22,10 @@ const PedidoSchema= Schema({
         type:Boolean,
         default: false,
       },
+    nPedido:{
+        type: Number,
+        required:[true,"El numero del pedido es obligatorio es obligatorio"],
+    }
      
 });
 //quitar datos de la respuesta json

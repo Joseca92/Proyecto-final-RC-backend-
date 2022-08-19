@@ -31,11 +31,14 @@ const pedidoByIdGet=async(req= request, res= response)=>{
 
 const pedidoPost= async(req=request, res=resolve)=> {
 
-    const  { usuario_id, date, menu_id, estado} = req.body;
-    const pedido=new Pedido({usuario: usuario_id, menu: menu_id, date: date,estado: estado});
+    const  { usuario_id, menu, nPedido} = req.body;
+    const total= await Pedido.countDocuments({estado:true});
+
+    const pedido=new Pedido({usuario: usuario_id, menu, nPedido:total+1});
     await pedido.save();
 
     res.status(201).json({
+        msg: "Pedido en estado pendiente",
     pedido,
     
 }); 
@@ -43,7 +46,7 @@ const pedidoPost= async(req=request, res=resolve)=> {
 //Cambiar pedido de pendiente a realizado TRUE= Realizado
 const pedidoPut=async(req= request, res= response)=>{
     const {id}= req.params;
-    const  { usuario, date, menu, estado, entrega} = req.body;
+    const  { entrega} = req.body;
     const pedido= await Pedido.findByIdAndUpdate(id,{entrega: true},{new:true});
     res.json({
         msg: "Pedido Realizado",
