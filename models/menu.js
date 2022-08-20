@@ -23,12 +23,11 @@ const MenuSchema= Schema({
     },
 });
 // quitar datos de la respuesta json
-// MenuSchema.methods.toJSON = function() {
-//     const {__v, password, _id, ...resto}=this.toObject();
-//     resto.uid= _id;
+ MenuSchema.methods.toJSON = function() {
+     const {__v, ...resto}=this.toObject();
 
-//     return resto;
-// }
+     return resto;
+ }
 
 
 module.exports= model("Menu", MenuSchema);

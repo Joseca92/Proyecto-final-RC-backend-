@@ -29,11 +29,11 @@ const PedidoSchema= Schema({
      
 });
 //quitar datos de la respuesta json
-/* UsuarioSchema.methods.toJSON = function() {
-    const {__v, password, _id, ...resto}=this.toObject();
+PedidoSchema.methods.toJSON = function() {
+    const {__v, _id, ...resto}=this.toObject();
     resto.uid= _id;
 
     return resto;
-} */
+} 
 
 module.exports= model("Pedido", PedidoSchema);
