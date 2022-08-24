@@ -2,10 +2,11 @@ const{request, resolve} = require("express");
 const Pedido = require('../models/pedido');
 
 const pedidoGet= async(req=request, res=resolve)=> {
-    const {limite=5, desde=0}= req.query;
-    const pedido=await Usuario.find({estado:true})
+    const {limite=20, desde=0}= req.query;
+    const pedido=await Pedido.find({estado:true})
     .skip(desde)
     .limit(limite)
+    .populate("usuario", "nombre email");
     const total= await Pedido.countDocuments({estado:true});
     res.json({
     total,

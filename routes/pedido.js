@@ -16,7 +16,7 @@ const { pedidoGet,
 const router= Router();
 
 router.get('/', [
-    validarJWT,
+    
 ], pedidoGet);
 
 router.get("/:id",[

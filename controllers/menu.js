@@ -25,8 +25,8 @@ const menuByIdGet=async(req= request, res= response)=>{
 }
 
 const menuPost = async (req = request, res = resolve) => {
-  const { nombre, estado, precio, detalle, categoria } = req.body;
-  const menu = new Menu({ nombre, estado, precio, detalle, categoria });
+  const { img, nombre, estado, precio, detalle, categoria } = req.body;
+  const menu = new Menu({ img, nombre, estado, precio, detalle, categoria });
   await menu.save();
   res.status(201).json({
     // msg: 'Peticion POST',

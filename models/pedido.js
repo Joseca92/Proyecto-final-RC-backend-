@@ -3,7 +3,7 @@ const {Schema, model}= require('mongoose');
 const PedidoSchema= Schema({
     usuario:{
         type: Schema.Types.ObjectId,
-        ref: "usuario",
+        ref: "Usuario",
         required:[true,"El usuario es obligatorio"], 
     },
     date:{
