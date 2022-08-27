@@ -33,7 +33,7 @@ router.post("/",[
 
 //put
 router.put("/:id",[
-    validarJWT,
+    /* validarJWT, */
     check("id","No es un id de Mongo valido").isMongoId(),
     check("id").custom(existePedidoById),
     validarCampos,
