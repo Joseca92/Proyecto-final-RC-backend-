@@ -4,10 +4,9 @@ const bcrypt = require("bcryptjs");
 
 //trae a todos los usuarios
 const usuariosGet= async(req=request, res=resolve)=> {
-    const {limite=5, desde=0}= req.query;
+    
     const usuario=await Usuario.find({estado:true})
-    .skip(desde)
-    .limit(limite)
+    
     const total= await Usuario.countDocuments({estado:true});
     res.json({
     total,

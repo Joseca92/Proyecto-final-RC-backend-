@@ -2,8 +2,8 @@ const { request, resolve } = require("express");
 const Menu = require("../models/menu");
 
 const menuGet = async (req = request, res) => {
-  const { limite = 5, desde = 0 } = req.query;
-  const menu = await Menu.find({ estado: true }).skip(desde).limit(limite);
+ 
+  const menu = await Menu.find({ estado: true });
   const total = await Menu.countDocuments({ estado: true });
   res.json({
     total,
