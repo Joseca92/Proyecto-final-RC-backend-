@@ -16,8 +16,8 @@ const {
 const router= Router();
 
 router.get('/', [
-    validarJWT,
-    esAdminRole,
+validarJWT,
+  esAdminRole,
 ], usuariosGet);
 router.post('/', [
     check("email","El correo no es valido").isEmail(),
@@ -30,7 +30,7 @@ router.post('/', [
     ],usuariosPost);
     
 router.put('/:id',[
-    validarJWT,
+   validarJWT,
     check("id", "No es un ID valido").isMongoId(),
     check("id").custom(existeUsuarioPorId),
     check("role").custom(esRoleValido),
