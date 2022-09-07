@@ -19,7 +19,7 @@ const router = Router();
 router.get("/"/*,[/*validarJWT*]*/, menuGet);
 
 router.get("/:id",[
-  /* validarJWT, */
+  validarJWT,
   check("id","No es un id de Mongo valido").isMongoId(),
   check("nombre").custom(menuExiste),
   validarCampos, 

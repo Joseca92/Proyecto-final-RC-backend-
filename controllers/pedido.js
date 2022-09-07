@@ -60,7 +60,7 @@ const pedidoDelete= async(req, res)=> {
     const {id}= req.params;
     //pedido borrado
     const  { usuario, date, menu, estado, entrega} = req.body;
-    const pedido= await Pedido.findByIdAndUpdate(id,{estado: true},{new:true});
+    const pedido= await Pedido.findByIdAndUpdate(id,{estado: false},{new:true});
     res.json({
     msg:'El pedido fue borrado definitivamente de la base de datos',
     pedido,
