@@ -16,7 +16,7 @@ const {
 } = require("../helpers/db-validators");
 
 const router = Router();
-router.get("/",[validarJWT], menuGet);
+router.get("/"/*,[/*validarJWT*]*/, menuGet);
 
 router.get("/:id",[
   /* validarJWT, */
@@ -36,7 +36,7 @@ router.post(
     check("precio", "El valor es obligatorio").notEmpty(),
     check("detalle", "El detalle es obligatorio").notEmpty(),
     check("nombre").custom(menuExiste),
-    check("categoria").custom(existeCategoriaMenu),
+    //check("categoria").custom(existeCategoriaMenu),
     
     validarCampos,
   ],

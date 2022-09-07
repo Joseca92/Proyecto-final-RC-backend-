@@ -12,5 +12,4 @@ const categoriaGet = async (req = request, res) => {
 
 module.exports = {
     categoriaGet,
-   
   };
