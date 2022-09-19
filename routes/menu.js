@@ -16,10 +16,10 @@ const {
 } = require("../helpers/db-validators");
 
 const router = Router();
-router.get("/",[validarJWT], menuGet);
+router.get("/",/* [validarJWT], */ menuGet);
 
 router.get("/:id",[
-  validarJWT,
+  /* validarJWT, */
   check("id","No es un id de Mongo valido").isMongoId(),
   check("nombre").custom(menuExiste),
   validarCampos, 
@@ -45,7 +45,7 @@ router.post(
 router.put(
   "/:id",
   [
-    validarJWT,
+    /* validarJWT, */
     check("id", "El ID no es válido").isMongoId(),
     check("id").custom(existeMenuPorId),
     check("categoria").custom(existeCategoriaMenu),
@@ -56,7 +56,7 @@ router.put(
 router.delete(
   "/:id",
   [
-    validarJWT,
+    /* validarJWT, */
     check("id", "El ID no es válido").isMongoId(),
     check("id").custom(existeMenuPorId),
     validarCampos,

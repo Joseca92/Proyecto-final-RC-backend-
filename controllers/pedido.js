@@ -35,8 +35,9 @@ const pedidoPost= async(req=request, res=resolve)=> {
 
     const  { usuario_id, menu, nPedido} = req.body;
     const total= await Pedido.countDocuments({estado:true});
+    let total1= total +1;
 
-    const pedido=new Pedido({usuario: usuario_id, menu, nPedido:total+1});
+    const pedido=new Pedido({usuario: usuario_id, menu, nPedido:total1+1});
     await pedido.save();
 
     res.status(201).json({

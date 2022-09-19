@@ -12,6 +12,10 @@ class Server{
         this.pedidoPath= '/api/pedido';
         this.buscarBlogPath='/api/buscarm'
         this.categoriaPath='/api/categoria'
+        this.buscarPedidoPath='/api/buscarp'
+        this.rolesPath='/api/roles'
+        this.buscarUsuarioPath='/api/buscaru'
+        
 
         //conexion DB
         this.conectarDB();
@@ -42,6 +46,10 @@ class Server{
         this.app.use(this.pedidoPath, require("../routes/pedido"));
         this.app.use(this.buscarBlogPath, require("../routes/menu-buscar"));
         this.app.use(this.categoriaPath, require("../routes/categoria"));
+        this.app.use(this.rolesPath, require("../routes/roles"));
+        this.app.use(this.buscarPedidoPath, require("../routes/pedido-buscar"));
+        this.app.use(this.buscarUsuarioPath, require("../routes/usuario-buscar"));
+
 
 
     }

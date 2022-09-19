@@ -2,6 +2,21 @@ const{request, resolve} = require("express");
 const Usuario = require('../models/usuario');
 const bcrypt = require("bcryptjs");
 
+//traer un susuario por su id
+const usuariosGetId= async(req=request, res=resolve)=> {
+    const {id}= req.params;
+    const usuario= await Usuario.findById(id);
+    if (usuario.hidden == true){
+        return res.status(400).json({
+            msg: "No se encuentro al usuario"
+        })
+    }
+    res.json({
+    usuario,
+  
+}); 
+}
+
 //trae a todos los usuarios
 const usuariosGet= async(req=request, res=resolve)=> {
     
@@ -66,4 +81,5 @@ module.exports= {
     usuariosPost,
     usuariosPut,
     usuariosDelete,
+    usuariosGetId,
 }

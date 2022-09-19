@@ -23,7 +23,7 @@ const PedidoSchema= Schema({
         default: false,
       },
     nPedido:{
-        type: Number,
+        type: String,
         required:[true,"El numero del pedido es obligatorio es obligatorio"],
     }
      
