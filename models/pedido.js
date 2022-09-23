@@ -1,6 +1,10 @@
 const {Schema, model}= require('mongoose');
 
 const PedidoSchema= Schema({
+    order:{
+        type: Number,
+        required:[true,"El numero del pedido es obligatorio es obligatorio"],
+    },
     usuario:{
         type: Schema.Types.ObjectId,
         ref: "Usuario",

@@ -40,7 +40,7 @@ const menuPut = async (req, res) => {
 
   res.json({
     msg: "Menú actualizado",
-    menu,
+    menu, 
   });
 };
 const menuDelete = async (req = request, res = resolve) => {

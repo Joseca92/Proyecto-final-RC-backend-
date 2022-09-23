@@ -6,7 +6,7 @@ const pedidoGet= async(req=request, res=resolve)=> {
     const pedido=await Pedido.find({estado:true})
     .skip(desde)
     .limit(limite)
-    .sort({"nPedido": -1})
+    .sort({"order": -1})
     .populate("usuario", "nombre email");
     const total= await Pedido.countDocuments({estado:true});
     res.json({
@@ -36,8 +36,9 @@ const pedidoPost= async(req=request, res=resolve)=> {
     const  { usuario_id, menu, nPedido} = req.body;
     const total= await Pedido.countDocuments({estado:true});
     let total1= total +1;
+    
 
-    const pedido=new Pedido({usuario: usuario_id, menu, nPedido:total1+1});
+    const pedido=new Pedido({order:total+1 ,usuario: usuario_id, menu, nPedido:total1+1});
     await pedido.save();
 
     res.status(201).json({

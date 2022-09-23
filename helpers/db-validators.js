@@ -27,7 +27,7 @@ const existeUsuarioPorId= async(id)=>{
 }
 //Validar categoria Menu
 const existeCategoriaMenu = async (categoria="") => {
-    const existeCtegoria = await Categoria.findOne({_id:id});
+    const existeCtegoria = await Categoria.findOne({categoria});
     if (!existeCtegoria) {
       throw new Error(`La categoria ${categoria} no existe en la DB`);
     }
