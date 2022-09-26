@@ -11,20 +11,22 @@ const {
     usuariosGet , 
     usuariosGetId,
     usuariosPost, 
-    usuariosPut, usuariosDelete
+    usuariosPut, usuariosDelete,
 }= require("../controllers/usuarios");
 
 const router= Router();
 router.get('/:id', [
-    /* validarJWT, */
-     /*  esAdminRole, */
+    validarJWT,
+    esAdminRole,
     ], usuariosGetId);
 
+
+
 router.get('/', [
-/* validarJWT, */
- /*  esAdminRole, */
+ validarJWT,
+ esAdminRole,
 ], usuariosGet);
-router.post('/', [
+router.post('/', [ 
     check("email","El correo no es valido").isEmail(),
     check("email").custom(emailExiste),
     check('password',"La contraseña debe tener como minimo 6 caracteres").isLength({min:6}),
@@ -32,10 +34,11 @@ router.post('/', [
    /*  check("role","No es un rol valido").isIn(["ADMIN_ROLE", "USER_ROLE"]), */
     check("role").custom(esRoleValido),
     validarCampos
-    ],usuariosPost);
+    ],usuariosPost);  
     
 router.put('/:id',[
-   /* validarJWT, */
+    validarJWT,
+    esAdminRole,
     check("id", "No es un ID valido").isMongoId(),
     check("id").custom(existeUsuarioPorId),
     check("role").custom(esRoleValido),
@@ -43,12 +46,12 @@ router.put('/:id',[
 
 ], usuariosPut);
 router.delete('/:id',[
-   /*  validarJWT, */
-    /* esAdminRole, */
+    validarJWT,
+    esAdminRole,
     check("id", "No es un ID valido").isMongoId(),
     check("id").custom(existeUsuarioPorId),
     validarCampos
 
 ], usuariosDelete);
 
-module.exports= router;
+module.exports= router; 

@@ -14,20 +14,21 @@ const {
   existeMenuPorId,
   menuExiste,
 } = require("../helpers/db-validators");
+const { esAdminRole } = require("../middlewares/validar-role");
 
 const router = Router();
-router.get("/",/* [validarJWT], */ menuGet);
+router.get("/",/* [validarJWT] */ menuGet);
 
 router.get("/:id",[
-  /* validarJWT, */
+  validarJWT,
   check("id","No es un id de Mongo valido").isMongoId(),
   check("nombre").custom(menuExiste),
   validarCampos, 
 ], menuByIdGet);
 
-router.post(
-  "/",
-  [
+router.post("/",[
+    validarJWT,
+    esAdminRole,
     check("nombre", "El nombre es obligatorio").notEmpty(),
     check("nombre", "El nombre debe tener minimo 5 caracteres").isLength({
       min: 5,
@@ -45,7 +46,8 @@ router.post(
 router.put(
   "/:id",
   [
-    /* validarJWT, */
+    validarJWT,
+    esAdminRole,
     check("id", "El ID no es válido").isMongoId(),
     check("id").custom(existeMenuPorId),
     check("categoria").custom(existeCategoriaMenu),
@@ -56,7 +58,8 @@ router.put(
 router.delete(
   "/:id",
   [
-    /* validarJWT, */
+    validarJWT,
+    esAdminRole,
     check("id", "El ID no es válido").isMongoId(),
     check("id").custom(existeMenuPorId),
     validarCampos,

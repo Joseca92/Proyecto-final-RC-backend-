@@ -14,7 +14,7 @@ const menuGet = async (req = request, res) => {
 const menuByIdGet=async(req= request, res= response)=>{
   const {id}= req.params;
   const menu= await Menu.findById(id);
-  if (menu.estado == false){
+  if (!menu.estado){
       return res.status(400).json({
           msg: "No se encuentra el menu"
       })
@@ -22,7 +22,7 @@ const menuByIdGet=async(req= request, res= response)=>{
   return res.json({
       menu,
   })
-}
+}  
 
 const menuPost = async (req = request, res = resolve) => {
   const { img, nombre, estado, precio, detalle, categoria } = req.body;

@@ -17,6 +17,10 @@ const usuariosGetId= async(req=request, res=resolve)=> {
 }); 
 }
 
+
+   
+
+
 //trae a todos los usuarios
 const usuariosGet= async(req=request, res=resolve)=> {
     
@@ -30,7 +34,7 @@ const usuariosGet= async(req=request, res=resolve)=> {
 }); 
 }
 
-
+   
 
 const usuariosPost= async(req=request, res=resolve)=> {
 
@@ -40,7 +44,7 @@ const usuariosPost= async(req=request, res=resolve)=> {
     //encriptar la contraseña
     const salt=bcrypt.genSaltSync();
     usuario.password= bcrypt.hashSync(password, salt);
-    await usuario.save();
+    await usuario.save(); 
 
     res.status(201).json({
     usuario,
@@ -82,4 +86,5 @@ module.exports= {
     usuariosPut,
     usuariosDelete,
     usuariosGetId,
+   
 }

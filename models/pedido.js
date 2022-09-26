@@ -18,7 +18,7 @@ const PedidoSchema= Schema({
         type:[String],
         required:[true,"El menu es obligatorio"],
     },
-    estado:{
+    estado:{  
         type: Boolean,
         default:true,
     },

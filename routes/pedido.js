@@ -11,16 +11,19 @@ const { pedidoGet,
         pedidoPut,
         pedidoDelete,
     } = require('../controllers/pedido');
+const { esAdminRole } = require("../middlewares/validar-role");
 
 
 const router= Router();
 
 router.get('/', [
+    validarJWT,
+    esAdminRole,
     
 ], pedidoGet);
 
 router.get("/:id",[
-    /* validarJWT, */
+    validarJWT,
     check("id","No es un id de Mongo valido").isMongoId(),
     check("id").custom(existePedidoById),
     validarCampos, 
@@ -28,12 +31,13 @@ router.get("/:id",[
 
 // post
 router.post("/",[
-    /* validarJWT, */
+    validarJWT,
 ], pedidoPost);
 
 //put
 router.put("/:id",[
-   /*  validarJWT, */
+    validarJWT,
+    esAdminRole,
     check("id","No es un id de Mongo valido").isMongoId(),
     check("id").custom(existePedidoById),
     validarCampos,
@@ -42,7 +46,8 @@ router.put("/:id",[
 
 // Delete
 router.delete("/:id",[
-    /* validarJWT, */
+    validarJWT,
+    esAdminRole,
     check("id","No es un id de Mongo valido").isMongoId(),
     check("id").custom(existePedidoById),
     validarCampos,
